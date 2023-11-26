@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import './App.css'
 import axios from 'axios';
+import { Meal } from '../models/meal';
 
 function App() {
 
-  const [meals, setMeals] = useState([]);
+  const [meals, setMeals] = useState<Meal[]>([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/meal')
+    axios.get<Meal[]>('http://localhost:5000/api/meals')
       .then(response => {
         setMeals(response.data)
       })
@@ -17,7 +17,7 @@ function App() {
     <>
       <h1>MealApp</h1>
       <ul>
-        {meals.map((meal: any) => (
+        {meals.map((meal: Meal) => (
           <li key={meal.id}>
             {meal.name}
           </li>  
