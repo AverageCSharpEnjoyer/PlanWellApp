@@ -95,3 +95,5 @@ dist
 lib
 coverage
 .idea/
+API/PlanWellDatabase.db-shm
+API/PlanWellDatabase.db-wal
