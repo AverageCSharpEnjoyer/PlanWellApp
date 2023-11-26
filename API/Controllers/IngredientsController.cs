@@ -7,10 +7,10 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class IngredientController : ControllerBase
+    public class IngredientsController : ControllerBase
     {
         private readonly DataContext _context;
-        public IngredientController(DataContext context)
+        public IngredientsController(DataContext context)
         {
             _context = context;
         }

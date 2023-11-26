@@ -7,10 +7,10 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class StepController: ControllerBase
+    public class StepsController: ControllerBase
     {
         private readonly DataContext _context;
-        public StepController(DataContext context)
+        public StepsController(DataContext context)
         {
             _context = context;
         }

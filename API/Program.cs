@@ -1,3 +1,5 @@
+using Application.Core;
+using Application.Meals;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -17,6 +19,10 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
     });
 });
+builder.Services.AddMediatR(config =>
+    config.RegisterServicesFromAssembly(typeof(MealsList.Handler).Assembly)
+);
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 var app = builder.Build();
 
