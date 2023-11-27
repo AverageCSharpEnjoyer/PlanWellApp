@@ -1,14 +1,17 @@
 import { Alignment, Button, Navbar } from '@blueprintjs/core'
-import React from 'react'
 
 export default function NavBar() {
     return (
         <Navbar>
-            <Navbar.Group align={Alignment.LEFT}>
-                <Navbar.Heading>PlanWell</Navbar.Heading>
+            <Navbar.Group align={Alignment.RIGHT}>
+                <Navbar.Heading>_planWell</Navbar.Heading>
                 <Navbar.Divider/>
-                <Button className="bp5-minimal" icon="home" text="Home"/>
-                <Button className="bp5-minimal" icon="book" text="Diet"/>
+                <Button className="bp5-minimal" icon="home" text="_main"/>
+                <Button className="bp5-minimal" icon="form" text="_tasks"/>
+                <Button className="bp5-minimal" icon="euro" text="_money"/>
+                <Button className="bp5-minimal" icon="cycle" text="_fitness"/>
+                <Button className="bp5-minimal" icon="projects" text="_projects"/>
+                <Button className="bp5-minimal" icon="stacked-chart" text="_summary"/>
             </Navbar.Group>
         </Navbar>
     )
