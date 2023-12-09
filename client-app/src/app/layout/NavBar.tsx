@@ -1,18 +1,15 @@
-import { Alignment, Button, Navbar } from '@blueprintjs/core'
+import { NavLink } from "react-router-dom";
+import { Menu } from "semantic-ui-react";
 
 export default function NavBar() {
     return (
-        <Navbar>
-            <Navbar.Group align={Alignment.RIGHT}>
-                <Navbar.Heading>_planWell</Navbar.Heading>
-                <Navbar.Divider/>
-                <Button className="bp5-minimal" icon="home" text="_main"/>
-                <Button className="bp5-minimal" icon="form" text="_tasks"/>
-                <Button className="bp5-minimal" icon="euro" text="_money"/>
-                <Button className="bp5-minimal" icon="cycle" text="_fitness"/>
-                <Button className="bp5-minimal" icon="projects" text="_projects"/>
-                <Button className="bp5-minimal" icon="stacked-chart" text="_summary"/>
-            </Navbar.Group>
-        </Navbar>
+        <Menu>
+            <Menu.Item as={NavLink} to='/' name="_main" />
+            <Menu.Item as={NavLink} to='/todotasks' name="_tasks" />
+            <Menu.Item as={NavLink} to='/finance' name="_money" />
+            <Menu.Item as={NavLink} to='/fitness' name="_fitness" />
+            <Menu.Item as={NavLink} to='/personalprojects' name="_projects" />
+            <Menu.Item as={NavLink} to='/summary' name="_summary" />
+        </Menu>
     )
 }

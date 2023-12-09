@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Meal } from '../models/meal';
 import NavBar from './NavBar';
-import MainPage from '../../features/main-page';
+import { Container } from 'semantic-ui-react';
+import MealDashboard from '../../features/fitness_feature/diet_dashboard/meal-dashboard';
+import MainDashboard from '../../features/main-dashboard';
 
 function App() {
 
@@ -18,15 +20,10 @@ function App() {
   return (
     <>
     <NavBar></NavBar>
-    <MainPage></MainPage>
-      <h1>MealApp</h1>
-      <ul>
-        {meals.map((meal: Meal) => (
-          <li key={meal.id}>
-            {meal.name}
-          </li>  
-        ))}
-      </ul>
+    <MainDashboard></MainDashboard>
+    <Container style={{marginTop: '7em'}}>
+      <MealDashboard meals={meals} />
+    </Container>
     </>
   )
 }
