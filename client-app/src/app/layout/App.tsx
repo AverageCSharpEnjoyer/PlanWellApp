@@ -5,16 +5,23 @@ import NavBar from './NavBar';
 import { Container } from 'semantic-ui-react';
 import MealDashboard from '../../features/fitness_feature/diet_dashboard/meal-dashboard';
 import MainDashboard from '../../features/main-dashboard';
+import { getMeals } from '../api/planWellApi';
 
 function App() {
 
   const [meals, setMeals] = useState<Meal[]>([]);
 
   useEffect(() => {
-    axios.get<Meal[]>('http://localhost:5000/api/meals')
-      .then(response => {
-        setMeals(response.data)
-      })
+    const fetchData = async() => {
+      try {
+        const responseData = await getMeals();
+        setMeals(responseData);
+      } catch (error) {
+        console.error('Meals could not be loaded: ', error);
+      }
+    };
+    
+    fetchData();
   }, [])
 
   return (
