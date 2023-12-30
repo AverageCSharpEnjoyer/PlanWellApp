@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Meal } from '../models/meal';
 import NavBar from './NavBar';
 import { Container } from 'semantic-ui-react';
-import MealDashboard from '../../features/fitness_feature/diet_dashboard/meal-dashboard';
+import MealDashboard from '../../features/health/diet/meal-dashboard';
 import MainDashboard from '../../features/main-dashboard';
 import { getMeals } from '../api/planWellApi';
 

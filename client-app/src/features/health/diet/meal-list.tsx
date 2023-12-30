@@ -1,4 +1,4 @@
-import { Button, Item, List, Segment } from "semantic-ui-react";
+import { Button, Item, Segment } from "semantic-ui-react";
 import { Meal } from "../../../app/models/meal";
 
 interface Props {
