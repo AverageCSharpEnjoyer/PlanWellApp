@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom'
-import { router } from './app/router/Routes.tsx'
+import { BrowserRouter } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css'
-import { Loader } from 'semantic-ui-react'
+import App from './app/layout/App.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} fallbackElement={<Loader />}/>
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
   </React.StrictMode>
 )
