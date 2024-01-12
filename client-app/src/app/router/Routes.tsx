@@ -4,7 +4,7 @@ import { PathConstants } from "../common/PathConstants";
 import { Health } from "../../features/health/health-dashboard";
 import { Finance } from "../../features/finance/finance-dashboard";
 import { Projects } from "../../features/projects/projects-dashboard";
-import { Tasks } from "../../features/tasks/tasks-dashboard";
+import Tasks from "../../features/tasks/tasks-dashboard";
 import { Layout } from "../layout/Layout";
 import MainDashboard from "../../features/main-dashboard";
 

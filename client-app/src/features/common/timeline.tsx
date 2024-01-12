@@ -1,0 +1,51 @@
+import { useState } from "react";
+import './timeline.css';
+import { TimeRange } from "./timeRange";
+
+interface Milestone {
+    id: number;
+    date: string;
+    description: string;
+}
+
+interface TimelineProps {
+    milestones: Milestone[];
+    timeRange: TimeRange;
+}
+
+const Timeline: React.FC<TimelineProps> = ({ milestones, timeRange }) => {
+    const [selectedMilestone, setSelectedMilestone] = useState<number | null>(null);
+
+    const handleMilestoneClick = (id: number) => {
+        setSelectedMilestone(id === selectedMilestone ? null : id);
+    };
+
+    const calculatePosition = (date: string) => {
+        const startDate = new Date('2024-01-01');
+        const endDate = new Date('2024-12-31');
+        const milestoneDate = new Date(date);
+
+        const totalMilliseconds = endDate.getTime() - startDate.getTime();
+        const milestoneMilliseconds = milestoneDate.getTime() - startDate.getTime();
+
+        return (milestoneMilliseconds / totalMilliseconds) * 100;
+    };
+
+    return (
+        <div className="timeline">
+            {milestones.map((milestone) => (
+                <div
+                    key={milestone.id}
+                    className={`dot ${milestone.id === selectedMilestone ? 'selected' : ''}`}
+                    style={{ left: `${calculatePosition(milestone.date)}%` }}
+                    onClick={() => handleMilestoneClick(milestone.id)}
+                >
+                    <div className="tooltip">{milestone.description}</div>
+                </div>
+            ))}
+            <div className="line" />
+        </div>
+    );
+};
+
+export default Timeline;

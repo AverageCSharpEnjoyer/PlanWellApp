@@ -1,0 +1,46 @@
+.timeline {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+  }
+  
+  .line {
+    flex: 1;
+    height: 5px;
+    background-color: #000;
+  }
+  
+  .dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #3498db;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .dot:hover {
+    background-color: #2980b9;
+  }
+  
+  .dot.selected {
+    background-color: #e74c3c;
+  }
+  
+  .tooltip {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 1;
+  }
+  
+  .dot:hover .tooltip {
+    display: block;
+  }
