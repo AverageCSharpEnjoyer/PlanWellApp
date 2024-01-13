@@ -2,13 +2,13 @@ using Domain.MealPlan;
 using MediatR;
 using Persistence;
 
-namespace Application.Ingredients
+namespace Application.ToDoTasks
 {
-    public class IngredientCreate
+    public class ToDoTaskCreate
     {
-        public class Command : IRequest
+        public class Command :IRequest
         {
-            public Ingredient Ingredient {get; set;}
+            public ToDoTask ToDoTask {get; set;}    
         }
 
         public class Handler : IRequestHandler<Command>
@@ -22,7 +22,7 @@ namespace Application.Ingredients
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Ingredients.Add(request.Ingredient);
+                _context.ToDoTasks.Add(request.ToDoTask);
                 await _context.SaveChangesAsync();
             }
         }

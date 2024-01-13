@@ -10,6 +10,7 @@ namespace Application.Core
             CreateMap<Meal, Meal>();
             CreateMap<Ingredient, Ingredient>();
             CreateMap<Step, Step>();
+            CreateMap<ToDoTask, ToDoTask>();
         }
     }
 }
