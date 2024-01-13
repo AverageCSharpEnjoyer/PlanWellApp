@@ -152,6 +152,28 @@ namespace Persistence
                 await context.SaveChangesAsync();
             }
 
+            if (!context.ToDoTasks.Any()) {
+                var toDoTasks = new List<ToDoTask>{
+                    new ToDoTask{
+                        Title = "Task 1",
+                        Details = "What to do",
+                        TaskDateTime = new DateTime(2024, 2, 12, 3,15,22)
+                    },
+                    new ToDoTask{
+                        Title = "Task 2",
+                        Details = "What to do",
+                        TaskDateTime = new DateTime(2024, 6, 20, 3,15,22)
+                    },
+                    new ToDoTask{
+                        Title = "Task 3",
+                        Details = "What to do",
+                        TaskDateTime = new DateTime(2024, 11, 12, 3,15,22)
+                    }
+                };
+                await context.ToDoTasks.AddRangeAsync(toDoTasks);
+                await context.SaveChangesAsync();
+            }
+
             return;
         }
     }

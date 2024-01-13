@@ -19,5 +19,6 @@ namespace Persistence
         public DbSet<Meal> Meals {get; set;}
         public DbSet<Ingredient> Ingredients {get; set;}
         public DbSet<Step> Steps {get; set;}
+        public DbSet<ToDoTask> ToDoTasks {get; set;}
     }
 }
