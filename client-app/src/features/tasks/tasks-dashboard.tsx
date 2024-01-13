@@ -1,4 +1,3 @@
-import { TimeRange } from "../common/timeRange";
 import Timeline from "../common/timeline";
 import { ToDoTask } from "../../app/models/toDoTask";
 import { useEffect, useState } from "react";
@@ -23,7 +22,7 @@ const Tasks: React.FC = () => {
 
     return (
         <>
-            <Timeline milestones={toDoTasks} timeRange={TimeRange.FY} />
+            <Timeline milestones={toDoTasks}/>
         </>
     )
 }
