@@ -1,19 +1,29 @@
 import { TimeRange } from "../common/timeRange";
 import Timeline from "../common/timeline";
-
-
+import { ToDoTask } from "../../app/models/toDoTask";
+import { useEffect, useState } from "react";
+import { getToDoTasks } from "../../app/api/planWellApi";
 
 const Tasks: React.FC = () => {
 
-    const milestones = [
-        { id: 1, date: '2024-05-11', description: 'First milestone' },
-        { id: 2, date: '2024-12-01', description: 'Second milestone' },
-        // Add more milestones as needed
-    ];
+    const [toDoTasks, setToDoTasks] = useState<ToDoTask[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try{
+                const responseData = await getToDoTasks();
+                setToDoTasks(responseData);
+            } catch (error) {
+                console.error('Tasks could not be loaded: ', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <>
-            <Timeline milestones={milestones} timeRange={TimeRange.FY} />
+            <Timeline milestones={toDoTasks} timeRange={TimeRange.FY} />
         </>
     )
 }
