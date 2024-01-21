@@ -21,6 +21,12 @@ namespace API.Controllers
             return await _context.ToDoTasks.Select(x=> x).ToListAsync();
         }
 
+        [HttpGet("{dateFrom}/{dateTo}")] //api/toDoTasks
+        public async Task<ActionResult<IEnumerable<ToDoTask>>> GetToDoTasks(DateTime dateFrom, DateTime dateTo)
+        {
+            return await _context.ToDoTasks.Where(x => x.TaskDateTime > dateFrom && x.TaskDateTime < dateTo).Select(x=> x).ToListAsync();
+        }
+
         [HttpGet("{id}")] //api/toDoTasks/{id}
         public async Task<ActionResult<ToDoTask>> GetToDoTask(Guid id)
         {

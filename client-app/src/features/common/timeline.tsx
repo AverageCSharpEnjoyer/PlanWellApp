@@ -2,7 +2,8 @@ import { ChangeEvent, useEffect, useState } from "react";
 import './timeline.css';
 import { ToDoTask } from "../../app/models/toDoTask";
 import { TimeRange, Years } from "./timeRange";
-import { getToDoTasks } from "../../app/api/planWellApi";
+import { getToDoTasksInDateRange } from "../../app/api/planWellApi";
+import { calculateDateRanges, calculatePosition } from "./timelineHelpers";
 
 const Timeline: React.FC = () => {
 
@@ -10,11 +11,13 @@ const Timeline: React.FC = () => {
     const [selectedMilestone, setSelectedMilestone] = useState<string | null>(null);
     const [timeRange, setTimeRange] = useState<TimeRange>(TimeRange.FY);
     const [year, setYear] = useState<string>(Years[0]);
+    const [dateFrom, setDateFrom] = useState<Date>(new Date(`${year}-01-01`));
+    const [dateTo, setDateTo] = useState<Date>(new Date(`${year}-12-31`));
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const responseData = await getToDoTasks();
+                const responseData = await getToDoTasksInDateRange(dateFrom, dateTo);
                 setTimelineTasks(responseData);
             } catch (error) {
                 console.error('Tasks for timeline could not be loaded: ', error);
@@ -22,7 +25,7 @@ const Timeline: React.FC = () => {
         };
 
         fetchData();
-    }, []);
+    }, [dateFrom, dateTo]);
 
     const handleMilestoneClick = (id: string) => {
         setSelectedMilestone(id === selectedMilestone ? null : id);
@@ -31,44 +34,23 @@ const Timeline: React.FC = () => {
     const handleTimeRangeChange = (event: ChangeEvent<HTMLSelectElement>) => {
         const { value } = event.target;
         setTimeRange(value as TimeRange);
+
+        const [start, end] = calculateDateRanges(timeRange, year);
+        setDateFrom(start);
+        setDateTo(end);
+
         renderTimelineTasks(value as TimeRange, year);
     }
 
     const handleYearChange = (event: ChangeEvent<HTMLSelectElement>) => {
         const { value } = event.target;
         setYear(value);
+
+        const [start, end] = calculateDateRanges(timeRange, year);
+        setDateFrom(start);
+        setDateTo(end);
+
         renderTimelineTasks(timeRange, value);
-    }
-
-    const calculatePosition = (date: Date, timeRange: TimeRange, year: string) => {
-        const [startDate, endDate] = calculateDateRanges(timeRange, year);
-        console.log(`Start Date: ${startDate}`);
-        console.log(`End Date: ${endDate}`);
-        const milestoneDate = new Date(date);
-
-        const totalMilliseconds = endDate.getTime() - startDate.getTime();
-        const milestoneMilliseconds = milestoneDate.getTime() - startDate.getTime();
-
-        return (milestoneMilliseconds / totalMilliseconds) * 100;
-    };
-
-    function calculateDateRanges(timeRange: TimeRange, year: string): [Date, Date] {
-        switch (timeRange) {
-            case TimeRange.FY:
-                return [new Date(`${year}-01-01`), new Date(`${year}-12-31`)];
-            case TimeRange.H1:
-                return [new Date(`${year}-01-01`), new Date(`${year}-06-30`)];
-            case TimeRange.H2:
-                return [new Date(`${year}-07-01`), new Date(`${year}-12-31`)];
-            case TimeRange.Q1:
-                return [new Date(`${year}-01-01`), new Date(`${year}-03-31`)];
-            case TimeRange.Q2:
-                return [new Date(`${year}-04-01`), new Date(`${year}-06-30`)];
-            case TimeRange.Q3:
-                return [new Date(`${year}-07-01`), new Date(`${year}-09-30`)];
-            case TimeRange.Q4:
-                return [new Date(`${year}-10-01`), new Date(`${year}-12-31`)];
-        }
     }
 
     const renderTimelineTasks = (dateRangeType: TimeRange, year: string) => {

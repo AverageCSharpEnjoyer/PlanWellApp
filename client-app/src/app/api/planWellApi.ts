@@ -11,3 +11,13 @@ export async function getToDoTasks(){
     const response = await axios.get<ToDoTask[]>('http://localhost:5000/api/ToDoTasks');
     return response.data;
 }
+
+export async function getToDoTasksInDateRange(dateFrom: Date, dateTo: Date){
+    const response = await axios.get<ToDoTask[]>('http://localhost:5000/api/ToDoTasks', {
+        params: {
+            dateFrom: dateFrom,
+            dateTo: dateTo
+        }
+    });
+    return response.data;
+}
