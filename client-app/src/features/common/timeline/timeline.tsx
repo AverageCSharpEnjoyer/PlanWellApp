@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import './timeline.css';
-import { ToDoTask } from "../../app/models/toDoTask";
-import { TimeRange, Years } from "./timeRange";
-import { getToDoTasksInDateRange } from "../../app/api/planWellApi";
+import { ToDoTask } from "../../../app/models/toDoTask";
+import { TimeRange, Years } from "../constants";
+import { getToDoTasksInDateRange } from "../../../app/api/planWellApi";
 import { calculateDateRanges, calculatePosition } from "./timelineHelpers";
 
 const Timeline: React.FC = () => {
@@ -58,7 +58,7 @@ const Timeline: React.FC = () => {
             <div
                 key={timelineTask.id}
                 className={`dot ${timelineTask.id === selectedMilestone ? 'selected' : ''}`}
-                style={{ left: `${calculatePosition(timelineTask.taskDateTime, dateRangeType, year)}%` }}
+                style={{ left: `${calculatePosition(timelineTask.taskDateTime, dateRangeType, year)}%`}}
                 onClick={() => handleMilestoneClick(timelineTask.id)}
             >
                 <div className="tooltip">{timelineTask.title}</div>

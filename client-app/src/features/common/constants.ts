@@ -1,4 +1,3 @@
-
 export enum TimeRange {
     Q1 = 'Q1',
     Q2 = 'Q2',

@@ -1,4 +1,4 @@
-import { TimeRange } from "./timeRange";
+import { TimeRange } from "../constants";
 
 
 export function calculatePosition (date: Date, timeRange: TimeRange, year: string) {

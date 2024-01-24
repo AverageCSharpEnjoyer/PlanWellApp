@@ -1,4 +1,4 @@
-import Timeline from "../common/timeline";
+import Timeline from "../common/timeline/timeline";
 
 const Tasks: React.FC = () => {
     return (
