@@ -1,30 +1,18 @@
 import { Container } from "semantic-ui-react";
 import MealDashboard from "./diet/meal-dashboard";
-import { useEffect, useState } from "react";
-import { Meal } from "../../app/models/meal";
 import { getMeals } from "../../app/api/planWellApi";
+import { useQuery } from "react-query";
 
 export function Health() {
+    const {data: meals, error, isLoading} = useQuery('meals', getMeals);
 
-    const [meals, setMeals] = useState<Meal[]>([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const responseData = await getMeals();
-                setMeals(responseData);
-            } catch (error) {
-                console.error('Meals could not be loaded: ', error);
-            }
-        };
-
-        fetchData();
-    }, [])
+    if (error) return <div>Request Failed</div>;
+    if (isLoading) return <div>Loading...</div>;
 
     return (
         <>
             <Container style={{ marginTop: '7em' }}>
-                <MealDashboard meals={meals} />
+                <MealDashboard meals={meals ? meals : []} />
             </Container>
         </>
     )
