@@ -52,7 +52,7 @@ export default function MainDashboard() {
                     <Card.Content>
                         <Card.Header><a href="#">_summary</a></Card.Header>
                         <Card.Description>
-                            <p>View your charts</p>
+                            <p>View your charts - test</p>
                             <Button>Add new</Button>
                         </Card.Description>
                     </Card.Content>
