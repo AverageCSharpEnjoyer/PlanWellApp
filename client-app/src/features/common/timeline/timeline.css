@@ -1,48 +1,53 @@
 .timeline {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 50px;
-  }
-  
-  .line {
-    flex: 1;
-    height: 2px;
-    background-color: #161616;
-  }
-  
-  .dot {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #161616;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: left 1.5s ease-in-out;
-    transition-property: left;
-  }
-  
-  .dot:hover {
-    background-color: #fcbe15;
-  }
-  
-  .dot.selected {
-    background-color: #fcbe15;
-  }
-  
-  .tooltip {
-    display: none;
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    margin-top: 150%;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 14px;
-    white-space: nowrap;
-    z-index: 1;
-  }
-  
-  .dot:hover .tooltip {
-    display: block;
-  }
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.line {
+  flex: 1;
+  height: 4px;
+  background-color: #1f1f1f;
+}
+
+.dot {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  border: 4px solid #1f1f1f;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: left 1.5s ease-in-out;
+  transition-property: left;
+}
+
+.dot:hover {
+  background-color: #1f1f1f;
+}
+
+.dot.selected {
+  background-color: #1f1f1f;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  margin-top: 150%;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.dot:hover .tooltip {
+  display: block;
+}
+
+.minimal-select{
+  position: relative;
+}

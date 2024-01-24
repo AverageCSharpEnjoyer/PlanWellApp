@@ -58,7 +58,7 @@ const Timeline: React.FC = () => {
             <div
                 key={timelineTask.id}
                 className={`dot ${timelineTask.id === selectedMilestone ? 'selected' : ''}`}
-                style={{ left: `${calculatePosition(timelineTask.taskDateTime, dateRangeType, year)}%`}}
+                style={{ left: `${calculatePosition(timelineTask.taskDateTime, dateRangeType, year)}%` }}
                 onClick={() => handleMilestoneClick(timelineTask.id)}
             >
                 <div className="tooltip">{timelineTask.title}</div>
@@ -68,25 +68,25 @@ const Timeline: React.FC = () => {
 
     return (
         <>
-            <div>
-                <select value={timeRange} onChange={handleTimeRangeChange} id="timeRange">
+            <div className="timeline">
+                {renderTimelineTasks(timeRange, year)}
+                <div className="line" />
+            </div>
+            <div style={{right: 0, position: "absolute"}}>
+                <select value={timeRange} onChange={handleTimeRangeChange} id="timeRange" className="minimal-select">
                     {(Object.keys(TimeRange) as Array<keyof typeof TimeRange>).map(key => (
                         <option key={key} value={key}>
                             {key}
                         </option>
                     ))}
                 </select>
-                <select value={year} onChange={handleYearChange} id="year">
+                <select value={year} onChange={handleYearChange} id="year" className="minimal-select">
                     {Years.map(key => (
                         <option key={key} value={key}>
                             {key}
                         </option>
                     ))}
                 </select>
-            </div>
-            <div className="timeline">
-                {renderTimelineTasks(timeRange, year)}
-                <div className="line" />
             </div>
         </>
     );
